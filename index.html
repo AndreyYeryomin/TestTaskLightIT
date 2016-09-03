@@ -7,11 +7,11 @@
 <body ng-controller="ListCtrl">
 <div >
     <ul >
-        <li><a href="#/product1">About</a></li>
+        <li><a href="#/product1">{{product[0].id}}</a></li>
         <li><a href="#/product2">Contact</a></li>
     </ul>
 </div>
-
+<ng-view></ng-view>
 </body>
 <script src="js/angular.js"></script>
 <script src="js/controler.js"></script>
