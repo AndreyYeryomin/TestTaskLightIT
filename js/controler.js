@@ -2,7 +2,12 @@
  * Created by Andrey on 03.09.2016.
  */
 'use strict';
- var productlistApp = angular.module('productlistApp', ['ngRoute']);
+ var productlistApp = angular.module('productlistApp', ['ngRoute','ngCookies']);
+
+productlistApp.run(['$http', '$cookies', function ($http, $cookies){
+    $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
+    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+}]);
 
  productlistApp.config(['$routeProvider', function ($routeProvide) {
      $routeProvide
@@ -13,6 +18,10 @@
          .when('/product2', {
              templateUrl: 'temp/product2.html',
              controller: 'product2Ctrl'
+         })
+         .when('/registration', {
+             templateUrl: 'temp/registration.html',
+             controller: 'registrationCtrl'
          })
          .otherwise({
          redirectTo: '/'
@@ -35,4 +44,20 @@ productlistApp.controller('product2Ctrl', function ($scope, $http, $location) {
     $http.get('http://smktesting.herokuapp.com/api/reviews/2').success(function (data, status, headers, config) {
         $scope.reviews2 = data;
     })
+});
+productlistApp.controller('registrationCtrl', function ($scope, $http, $location) {
+    $scope.newName = "";
+    $scope.newPass = "";
+    $scope.sendPost = function() {
+        var data = $.param({
+                username: $scope.newName,
+                password: $scope.newPass
+        });
+        console.log(data);
+        $http.post("http://smktesting.herokuapp.com/api/register/", data).success(function(data, status) {
+            console.log(status);
+            console.log(data);
+        })
+
+    }
 });
