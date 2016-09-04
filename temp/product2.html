@@ -1,1 +1,15 @@
-<h2>22</h2>
+<div>
+    <h3>{{product[1].title}}</h3>
+    <img ng-src = "http://smktesting.herokuapp.com/static/{{product[1].img}}">
+    <p>{{product[1].text}}</p>
+</div>
+<aside ng-controller="product2Ctrl">
+    <h3>Reviews</h3>
+    <ul >
+        <li ng-repeat="reviews in reviews2">
+         <span>{{reviews.created_by.username  }} </span>
+         <p>Rate: {{reviews.rate}}</p>
+            <p>Comment: {{reviews.text}}</p>
+        </li>
+    </ul>
+</aside>

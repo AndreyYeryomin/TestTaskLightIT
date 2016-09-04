@@ -22,13 +22,17 @@
 
 productlistApp.controller('ListCtrl', function ($scope, $http) {
   $http.get('http://smktesting.herokuapp.com/api/products/').success(function (data, status, headers, config) {
-     console.log(data, status,headers,config);
       $scope.product = data;
   })
 });
 
 productlistApp.controller('product1Ctrl', function ($scope, $http, $location) {
-
+    $http.get('http://smktesting.herokuapp.com/api/reviews/1').success(function (data, status, headers, config) {
+        $scope.reviews1 = data;
+    })
 });
 productlistApp.controller('product2Ctrl', function ($scope, $http, $location) {
+    $http.get('http://smktesting.herokuapp.com/api/reviews/2').success(function (data, status, headers, config) {
+        $scope.reviews2 = data;
+    })
 });
