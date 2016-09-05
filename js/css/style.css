@@ -1,0 +1,11 @@
+#container{
+    margin: 0;
+}
+#Authorization{
+    display: block;
+    float: right;
+}
+#exit{
+    display: none;
+
+}
