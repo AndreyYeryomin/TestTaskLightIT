@@ -3,24 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="js/css/style.css">
 </head>
 <body ng-controller="ListCtrl">
 <div id="container" >
-<div ng-style="myStyle">
-    <form ng-controller="signInCtrl" ng-submit="signIn()" action="#">
-        Login: <input ng-model="userName" type="text">
-        Password: <input ng-model="userPass" type="password">
-        <button type="submit">Sign In</button>
-        <a href="#/registration">Sign Up</a>
-    </form>
-</div>
-    <div>
-    <ul >
-        <li><a href="#/product1">{{product[0].title}}</a></li>
-        <li><a href="#/product2">{{product[1].title}}</a></li>
-    </ul>
+    <div id="Authorization">
+        <form ng-controller="signInCtrl" ng-submit="signIn()" action="">
+            Login: <input ng-model="userName" type="text">
+            Password: <input ng-model="userPass" type="password">
+            <button type="submit">Sign In</button>
+            <a href="#/registration">Sign Up</a>
+        </form>
     </div>
-<ng-view></ng-view>
+    <div id="exit">
+        <form ng-controller="signOutCtrl" ng-submit="signOut()" action="">
+            <button type="submit">Exit</button>
+        </form>
+    </div>
+    <div>
+        <ul >
+            <li><a href="#/product1">{{product[0].title}}</a></li>
+            <li><a href="#/product2">{{product[1].title}}</a></li>
+        </ul>
+    </div>
+    <ng-view></ng-view>
 </div>
 </body>
 <script src="js/angular.js"></script>
