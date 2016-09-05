@@ -4,6 +4,12 @@
     <p>{{product[1].text}}</p>
 </div>
 <aside ng-controller="product2Ctrl">
+    <div ng-controller="addReviews" >
+        <form ng-submit="addComments()">
+            <input ng-model="rate" type="text" placeholder= "от 1 до 5" >
+            <input ng-model="text" type="text" placeholder="add commets...">
+            <button id="id"  type="submit" option="2">Submit Reviews</button>
+        </form>
     <h3>Reviews</h3>
     <ul >
         <li ng-repeat="reviews in reviews2">

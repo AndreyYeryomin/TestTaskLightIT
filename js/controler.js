@@ -7,6 +7,7 @@
 productlistApp.run(['$http', '$cookies', function ($http, $cookies){
     $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
     $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+    $http.defaults.headers.post['Authorization']="Token " + $.session.get("Token");
 
 }]);
 
@@ -72,7 +73,7 @@ productlistApp.controller('signInCtrl', function ($scope, $http, $location, $coo
             password: $scope.userPass
         });
         $http.post("http://smktesting.herokuapp.com/api/login/", data).success(function (data, status) {
-            $http.defaults.headers.post['Authorization']="Token " + data.token;
+            $.session.set("Token", data.token);
         });
 
     }
@@ -86,8 +87,7 @@ productlistApp.controller('addReviews', function ($scope, $http, $location) {
             rate: $scope.rate,
             text: $scope.text
         });
-        console.log(data);
-        $http.post("http://smktesting.herokuapp.com/api/reviews/1", data).success(function(data, status) {
+        $http.post("http://smktesting.herokuapp.com/api/reviews/"+$("#id").attr("option"), data).success(function(data, status) {
 
         })
 
