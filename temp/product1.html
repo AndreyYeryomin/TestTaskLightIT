@@ -1,16 +1,16 @@
 <div class="well col-lg-6">
     <ul class="list-group">
         <li class="list-group-item"><h3>{{product[0].title}}</h3></li>
-        <li class="list-group-item"><img ng-src = "http://smktesting.herokuapp.com/static/{{product[0].img}}"></span></li>
+        <li class="list-group-item"><img ng-src = "http://smktesting.herokuapp.com/static/{{product[0].img}}"></li>
         <li class="list-group-item"><p>{{product[0].text}}</p></li>
     </ul>
 </div>
 <aside class="col-lg-6" ng-controller="product1Ctrl">
     <div class="well" ng-controller="addReviews" >
-    <form ng-submit="addComments()">
-    <input ng-model="rate" type="text" pattern="\d [0-9]" placeholder= "vote from 1 to 5..." >
+    <form id="reviews" ng-submit="addComments()">
+    <input ng-model="rate" type="text" pattern="[0-9]{1}" placeholder= "vote from 1 to 5..." >
     <input ng-model="text" type="text" placeholder="add commets...">
-        <button id="id" class=" btn btn-primary"  type="submit" option="1">Submit Reviews</button>
+        <button id="id" class=" btn btn-primary"   type="submit"  option="1">Submit Reviews</button>
     </form>
     </div>
     <h3>Reviews</h3>

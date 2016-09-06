@@ -8,12 +8,12 @@ productlistApp.run(['$http', '$cookies', function ($http){
     $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     if($.session.get("Token")!==undefined){
         $http.defaults.headers.post['Authorization']="Token " + $.session.get("Token");
-        document.getElementById("Authorization").style.display ="none";
-        document.getElementById("exit").style.display ="block";
+        $("#Authorization").css("display","none");
+        $("#exit").css("display","block");
     }else{
         $http.defaults.headers.post['Authorization']="";
-        document.getElementById("Authorization").style.display ="block";
-        document.getElementById("exit").style.display ="none";
+        $("#Authorization").css("display","block");
+        $("#exit").css("display","none");
     }
 
 }]);
@@ -40,19 +40,19 @@ productlistApp.config(['$routeProvider', function ($routeProvide) {
 ]);
 
 productlistApp.controller('ListCtrl', function ($scope, $http) {
-    $http.get('http://smktesting.herokuapp.com/api/products/').success(function (data, status, headers, config) {
+    $http.get('http://smktesting.herokuapp.com/api/products/').success(function (data) {
         $scope.product = data;
     })
 });
 
 productlistApp.controller('product1Ctrl', function ($scope, $http) {
-    $http.get('http://smktesting.herokuapp.com/api/reviews/1').success(function (data, status, headers, config) {
+    $http.get('http://smktesting.herokuapp.com/api/reviews/1').success(function (data) {
         $scope.reviews1 = data;
     })
 });
 
 productlistApp.controller('product2Ctrl', function ($scope, $http) {
-    $http.get('http://smktesting.herokuapp.com/api/reviews/2').success(function (data, status, headers, config) {
+    $http.get('http://smktesting.herokuapp.com/api/reviews/2').success(function (data) {
         $scope.reviews2 = data;
     })
 });
@@ -67,7 +67,6 @@ productlistApp.controller('registrationCtrl', function ($scope, $http ) {
         });
 
         $http.post("http://smktesting.herokuapp.com/api/register/", data).success(function(data, status) {
-            console.log(data,status);
         })
 
     }
@@ -79,15 +78,15 @@ productlistApp.controller('signInCtrl', function ($scope, $http) {
         var data = $.param({
             username: $scope.userName,
             password: $scope.userPass
-        }); console.log( $.session.get("Token"));
-        $http.post("http://smktesting.herokuapp.com/api/login/", data).success(function (data, status) {
+        });
+        $http.post("http://smktesting.herokuapp.com/api/login/", data).success(function (data) {
             if(data.token == undefined){
                 alert('Enter correct information')
             }else{
                 $.session.set("Token", data.token);
                 $http.defaults.headers.post['Authorization']="Token " + $.session.get("Token");
-                document.getElementById("Authorization").style.display ="none";
-                document.getElementById("exit").style.display ="block";
+                $("#Authorization").css("display","none");
+                $("#exit").css("display","block");
             }
 
         });
@@ -103,19 +102,21 @@ productlistApp.controller('signOutCtrl', function ($scope) {
     }
 });
 
-productlistApp.controller('addReviews', function ($scope, $http, $location) {
+productlistApp.controller('addReviews', function ($scope, $http) {
     $scope.rate = "";
     $scope.text = "";
     $scope.addComments = function() {
-        var data = $.param({
-            rate: $scope.rate,
-            text: $scope.text
-        });
-            $http.post("http://smktesting.herokuapp.com/api/reviews/"+$("#id").attr("option"), data).success(function(data, status) {
-
-        });
-
-       
-
+        if ($.session.get("Token") !== undefined) {
+            var data = $.param({
+                rate: $scope.rate,
+                text: $scope.text
+            });
+            $http.post("http://smktesting.herokuapp.com/api/reviews/" + $("#id").attr("option"), data).success(function (data, status) {
+            });
+            $('form[id="reviews"] input[type="text"]').val('');
+        }else{
+            $('form[id="reviews"] input[type="text"]').val('');
+            alert("You should sign in first");
+        }
     }
 });
