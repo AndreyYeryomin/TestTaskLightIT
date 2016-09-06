@@ -111,9 +111,11 @@ productlistApp.controller('addReviews', function ($scope, $http, $location) {
             rate: $scope.rate,
             text: $scope.text
         });
-        $http.post("http://smktesting.herokuapp.com/api/reviews/"+$("#id").attr("option"), data).success(function(data, status) {
+            $http.post("http://smktesting.herokuapp.com/api/reviews/"+$("#id").attr("option"), data).success(function(data, status) {
 
-        })
+        });
+
+       
 
     }
 });

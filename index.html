@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="js/css/bootstrap.css">
     <link rel="stylesheet" href="js/css/style.css">
 </head>
 <body ng-controller="ListCtrl">
 <div id="container" >
-    <div id="Authorization">
-        <form ng-controller="signInCtrl" ng-submit="signIn()" action="">
-            Login: <input ng-model="userName" type="text">
-            Password: <input ng-model="userPass" type="password">
-            <button type="submit">Sign In</button>
-            <a href="#/registration">Sign Up</a>
+    <div class="well" id="Authorization">
+        <form class= "form-inline" ng-controller="signInCtrl" ng-submit="signIn()" action="">
+            Login: <input class="form-control" ng-model="userName" type="text">
+            Password: <input class="form-control" ng-model="userPass" type="password">
+            <button class="btn btn-success" type="submit">Sign In</button>
+            <a  class="btn btn-primary" href="#/registration">Sign Up</a>
         </form>
     </div>
-    <div id="exit">
+    <div class="well" id="exit">
         <form ng-controller="signOutCtrl" ng-submit="signOut()" action="">
-            <button type="submit">Exit</button>
+            <button class="btn btn-danger" type="submit">Exit</button>
         </form>
     </div>
-    <div>
+    <div id="PanelProduct" class="well">
         <ul >
-            <li><a href="#/product1">{{product[0].title}}</a></li>
-            <li><a href="#/product2">{{product[1].title}}</a></li>
+            <li><a class="btn btn-default " href="#/product1">{{product[0].title}}</a></li>
+            <li><a class="btn btn-default " href="#/product2">{{product[1].title}}</a></li>
         </ul>
     </div>
     <ng-view></ng-view>

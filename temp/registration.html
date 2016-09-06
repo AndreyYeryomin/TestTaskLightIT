@@ -1,9 +1,10 @@
-<div ng-controller="registrationCtrl">
-<form ng-submit="regUser()" action="#">
-    Логин:<br><input ng-model="newName" type="text"><br>
+<div class="registration" ng-controller="registrationCtrl">
+    <h3>Registration</h3>
+<form class="form-horizontal-sm" ng-submit="regUser()" action="#">
+    Логин:<br><input class="form-control" ng-model="newName" type="text"><br>
 
-    Пароль:<br><input ng-model="newPass" type="password"><br>
+    Пароль:<br><input class="form-control" ng-model="newPass" type="password"><br>
 
-    <button type="submit">Sign Up</button>
+    <button class="form-control btn btn-success" type="submit">Sign Up</button>
 </form>
 </div>

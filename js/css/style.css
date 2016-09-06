@@ -1,11 +1,38 @@
+li{
+    list-style-type: none;
+}
+body{
+    background-color: #F5FBE9;
+}
 #container{
     margin: 0;
 }
 #Authorization{
     display: block;
     float: right;
+    width: 100%;
 }
 #exit{
     display: none;
 
+
+}
+#PanelProduct{
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    padding: 5px 5px;
+}
+#PanelProduct li{
+   float: left;
+}
+li a.btn-default{
+  background-color: #1b6d85;
+}
+.list-group-item{
+    margin-bottom: 5px;
+}
+div.registration{
+    width: 300px;
+    margin: 0 auto;
 }
